@@ -1,0 +1,17 @@
+h2,
+.game__title,
+.game__description {
+    text-align: center;
+}
+.game {
+    background-color: lightsteelblue;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 5px 5px 10px black;
+}
+
+ 
