@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react"
+import { useHistory } from 'react-router-dom'
 import { getGames } from "./GameManager.js"
 import "./Game.css"
 
 export const GameList = (props) => {
     const [ games, setGames ] = useState([])
+    const history = useHistory()
 
     useEffect(() => {
         getGames().then(data => setGames(data))
@@ -11,6 +13,8 @@ export const GameList = (props) => {
 
     return (
         <article className="games">
+            
+
             <h2>List of games</h2>
             {
                 games.map(game => {
@@ -21,6 +25,12 @@ export const GameList = (props) => {
                     </section>
                 })
             }
+
+            <button className="btn" id="createBtn"
+                onClick={() => {
+                    history.push({ pathname: "/games/new" })
+                }}
+            >Register New Game</button>
         </article>
     )
 }
