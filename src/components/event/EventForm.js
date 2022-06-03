@@ -8,12 +8,13 @@ export const EventForm = () => {
     const history = useHistory()
     const [events, setEvents] = useState([])
     const [games, setGames ] = useState([])
+
     const [currentEvent, setCurrentEvent] = useState({
         game: 0,
         description: "",
         date: "",
-        time: "",
-        organizer: ""
+        time: "" 
+        // organizer: 1
     })
 
     const loadEvents = () => {
@@ -105,11 +106,11 @@ export const EventForm = () => {
                     evt.preventDefault()
 
                     const event = {
-                        game: currentEvent.game,
+                        game: parseInt(currentEvent.game),
                         description: currentEvent.description,
                         date: currentEvent.date,
                         time: currentEvent.time,
-                        organizer: currentEvent.organizer
+                        // organizer: parseInt(currentEvent.organizer)
                     }
 
                     // Send POST request to your API

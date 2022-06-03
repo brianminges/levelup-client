@@ -1,3 +1,5 @@
+const remoteURL = "http://localhost:8000"
+
 export const getEvents = () => {
     return fetch("http://localhost:8000/events", {
         headers:{
@@ -8,14 +10,12 @@ export const getEvents = () => {
 }
 
 export const createEvent = (event) => {
-    return fetch("http://localhost:8000/events", { 
+    return fetch(`${remoteURL}/events`, { 
         method: "POST",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify(event)
-    })
-        .then(response => response.json())
-        
+    }).then(response => response.json())
 }
