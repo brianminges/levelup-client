@@ -125,7 +125,7 @@ export const GameForm = () => {
 
                     // Send POST request to your API
                     createGame(game)
-                        .then(() => history.push("/games"))
+                        .then(() => history("/games"))
                 }}
                 className="btn btn-primary" 
                 id="createBtn">Create</button>

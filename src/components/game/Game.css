@@ -5,7 +5,7 @@ h2,
 }
 .game {
     background-color: lightsteelblue;
-    margin-bottom: 20px;
+    margin: 20px;
     padding: 10px;
     border-radius: 10px;
     width: 400px;
@@ -18,18 +18,22 @@ h2,
     background-color: steelblue;
     border-radius: 10px;
     /* box-shadow: 0px 0px 10px gray; */
-    margin: 0;
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
     display: block;
     color: white;
     text-align: left;
+    width: 420px;
+    text-align: center;
+    margin-bottom: 50px auto;
+
 }
 
 #createBtn:hover {
-    background-color: lightsteelblue;
+    background-color: lightgray;
     border-radius: 10px;
     /* box-shadow: 0px 0px 10px black; */
+    color: steelblue;
     margin: 0;
     margin-left: auto;
     margin-right: auto;
