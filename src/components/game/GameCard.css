@@ -1,0 +1,32 @@
+
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.cardBtn {
+    border-radius: 10px;
+    background-color: steelblue;
+    box-shadow: 1px 1px 5px black;
+    color: white;
+    font-size: .7rem;
+    border: none;
+    padding: 5px;
+    width: 50px;
+    margin-left: 10px
+}
+
+.cardBtn:hover {
+    border-radius: 10px;
+    background-color: lightgray;
+    box-shadow: 1px 1px 5px black;
+    color: steelblue;
+    font-size: .7rem;
+    border: none;
+    padding: 5px;
+    width: 50px;
+    margin-left: 10px
+}
+

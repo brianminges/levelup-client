@@ -19,3 +19,23 @@ export const createEvent = (event) => {
         body: JSON.stringify(event)
     }).then(response => response.json())
 }
+
+export const getEventById = (eventId) => {
+    return fetch(`${remoteURL}/events/${eventId}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
+export const updateEvent = (event) => {
+    return fetch(`${remoteURL}/events/${event.id}`, {
+        method: "PUT",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(event)
+    })
+}
