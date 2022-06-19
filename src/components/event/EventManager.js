@@ -39,3 +39,13 @@ export const updateEvent = (event) => {
         body: JSON.stringify(event)
     })
 }
+
+export const deleteEvent = (id) => {
+    return fetch(`${remoteURL}/events/${id}`, { 
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        },
+        body: JSON.stringify(id)
+    })
+}

@@ -7,7 +7,7 @@
 }
 
 .cardBtn {
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: steelblue;
     box-shadow: 1px 1px 5px black;
     color: white;
@@ -15,7 +15,8 @@
     border: none;
     padding: 5px;
     width: 50px;
-    margin-left: 10px
+    margin-left: 10px;
+    height: 30px;
 }
 
 .cardBtn:hover {

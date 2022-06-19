@@ -115,7 +115,7 @@ export const EventForm = () => {
 
                     // Send POST request to your API
                     createEvent(event)
-                        .then(() => history("/events"))
+                        .then(() => history.push("/events"))
                 }}
                 className="btn btn-primary" 
                 id="createBtn">Create</button>

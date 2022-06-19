@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { useHistory, useParams } from 'react-router-dom'
-import { updateGame, getGameTypes, getGameById } from './GameManager.js'
+import { updateGame, getGameTypes, 
+    getGameById 
+} from './GameManager.js'
 import "./GameForm.css"
 
 export const UpdateGameForm = () => {
@@ -14,7 +16,6 @@ export const UpdateGameForm = () => {
     const loadTypes = () => {
         return getGameTypes().then(data => {
             setGameTypes(data)
-            console.log('gameTypes set', data)
         })
     }
 
@@ -24,26 +25,36 @@ export const UpdateGameForm = () => {
 
     //Sets game to be edited on page load
     const [currentGame, setCurrentGame] = useState({
-        game_type: "",
+        gameTypeId: 0,
         title: "",
         maker: "",
-        number_of_players: "",
-        skill_level: ""
+        numberOfPlayers: 0,
+        skillLevel: 1
     })
 
     const loadGame = () => {
-        getGameById(gameId)
-            .then(data => {
-                setCurrentGame(data)
-                setIsLoading(false);
-                console.log(data)
-            })
+        if (gameId) {
+            getGameById(gameId)
+                .then(data => {
+                    setCurrentGame({
+                        id: gameId,
+                        gameTypeId: data.game_type.id,
+                        title: data.title,
+                        maker: data.maker,
+                        numberOfPlayers: data.number_of_players,
+                        skillLevel: data.skill_level
+                    })
+                })
+        }
     }
     
     useEffect(() => {
         loadGame()
     }, [])
 
+    useEffect(() => {
+        console.log('currentGame', currentGame)
+    }, [currentGame])
 
 
 
@@ -61,10 +72,15 @@ export const UpdateGameForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="title">Title: </label>
-                    <input type="text" name="title" required autoFocus className="form-control"
+                    <input 
+                        type="text" 
+                        name="title" 
+                        id="title"
+                        required autoFocus 
+                        className="form-control"
                         value={currentGame.title}
                         onChange={handleFieldChange}
-                        id="title"
+                        
                     />
                 </div>
             </fieldset>
@@ -72,10 +88,14 @@ export const UpdateGameForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="maker">Maker: </label>
-                    <input type="text" name="maker" required className="form-control"
+                    <input 
+                        type="text" 
+                        name="maker"
+                        id="maker" 
+                        required 
+                        className="form-control"
                         value={currentGame.maker}
                         onChange={handleFieldChange}
-                        id="maker"
                     />
                 </div>
             </fieldset>
@@ -83,10 +103,14 @@ export const UpdateGameForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="numberOfPlayers">Number of Players: </label>
-                    <input type="number" name="number_of_players" required className="form-control"
-                        value={currentGame.number_of_players}
+                    <input 
+                        type="number" 
+                        name="number_of_players"
+                        id="numberOfPlayers" 
+                        required 
+                        className="form-control"
+                        value={currentGame.numberOfPlayers}
                         onChange={handleFieldChange}
-                        id="numberOfPlayers"
                     />
                 </div>
             </fieldset>
@@ -94,25 +118,28 @@ export const UpdateGameForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="skillLevel">Skill Level: </label>
-                    <input type="number" name="skill_level" required className="form-control"
-                        value={currentGame.skill_level}
-                        onChange={handleFieldChange}
+                    <input 
+                        type="number" 
+                        name="skill_level" 
                         id="skillLevel"
+                        required 
+                        className="form-control"
+                        value={currentGame.skillLevel}
+                        onChange={handleFieldChange}
                     />
                 </div>
             </fieldset>
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="game_type">Game Type: </label>
+                    <label htmlFor="gameTypeId">Game Type: </label>
                     <select 
                         className="form-control"
-                        name="game_type" 
+                        name="gameTypeId"
                         id="game_type"
                         required 
-                        value={currentGame.game_type.id}
+                        value={currentGame.gameTypeId}
                         onChange={handleFieldChange} >
-                        <option defaultValue={currentGame.game_type}></option>
                             {gameTypes.map(
                                 gameType => (<option key={gameType.id} value={gameType.id}>{gameType.label}</option>)
                             )}
@@ -121,6 +148,7 @@ export const UpdateGameForm = () => {
                 </div>
             </fieldset>
 
+
             <button type="submit"
                 onClick={evt => {
                     // Prevent form from being submitted
@@ -128,17 +156,16 @@ export const UpdateGameForm = () => {
 
                     // Changing to snake case to match back end
                     const editedGame = {
-                        id: currentGame.id,
-                        game_type: parseInt(currentGame.game_type),
+                        // id: gameId,
+                        game_type: parseInt(currentGame.gameTypeId),
                         title: currentGame.title,
                         maker: currentGame.maker,
-                        number_of_players: parseInt(currentGame.number_of_players),
-                        skill_level: parseInt(currentGame.skill_level)
-                        
+                        number_of_players: parseInt(currentGame.numberOfPlayers),
+                        skill_level: parseInt(currentGame.skillLevel)
                     }
-
+                    
                     // Send POST request to your API
-                    updateGame(editedGame)
+                    updateGame(editedGame, gameId)
                         .then(() => history.push('/games'))
                 }}
                 className="btn btn-primary" 
