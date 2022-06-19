@@ -48,22 +48,29 @@ export const GameForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="title">Title: </label>
-                    <input type="text" name="title" required autoFocus className="form-control"
+                    <input 
+                        type="text" 
+                        name="title"
+                        id="title"
+                        required autoFocus                      
+                        className="form-control"
                         value={currentGame.title}
                         onChange={changeGameState}
-                        id="title"
                     />
                 </div>
             </fieldset>
 
-            {/* TODO: create the rest of the input fields */}
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="maker">Maker: </label>
-                    <input type="text" name="maker" required className="form-control"
+                    <input
+                        type="text" 
+                        name="maker" 
+                        id="maker"
+                        required 
+                        className="form-control"
                         value={currentGame.maker}
                         onChange={changeGameState}
-                        id="maker"
                     />
                 </div>
             </fieldset>
@@ -71,10 +78,14 @@ export const GameForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="numberOfPlayers">Number of Players: </label>
-                    <input type="text" name="numberOfPlayers" required className="form-control"
+                    <input 
+                        type="text" 
+                        name="numberOfPlayers" 
+                        id="numberOfPlayers"
+                        required 
+                        className="form-control"
                         value={currentGame.numberOfPlayers}
                         onChange={changeGameState}
-                        id="numberOfPlayers"
                     />
                 </div>
             </fieldset>
@@ -82,10 +93,14 @@ export const GameForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="skillLevel">Skill Level: </label>
-                    <input type="number" name="skillLevel" required className="form-control"
+                    <input 
+                        type="number" 
+                        name="skillLevel" 
+                        id="skillLevel"
+                        required 
+                        className="form-control"
                         value={currentGame.skillLevel}
                         onChange={changeGameState}
-                        id="skillLevel"
                     />
                 </div>
             </fieldset>
@@ -100,12 +115,11 @@ export const GameForm = () => {
                         required 
                         value={currentGame.gameTypeId}
                         onChange={changeGameState} >
-                        <option value="0"></option>
+                        <option value="0">Please select ...</option>
                             {gameTypes.map(
                                 gameType => (<option key={gameType.id} value={gameType.id}>{gameType.label}</option>)
                             )}
                     </select>
-
                 </div>
             </fieldset>
 
@@ -115,7 +129,8 @@ export const GameForm = () => {
                     evt.preventDefault()
 
                     // Changing to snake case to match back end
-                    const game = {
+                    const newGame = {
+                        id: currentGame.id,
                         maker: currentGame.maker,
                         title: currentGame.title,
                         number_of_players: parseInt(currentGame.numberOfPlayers),
@@ -124,8 +139,8 @@ export const GameForm = () => {
                     }
 
                     // Send POST request to your API
-                    createGame(game)
-                        .then(() => history("/games"))
+                    createGame(newGame)
+                        .then(() => history.push("/games"))
                 }}
                 className="btn btn-primary" 
                 id="createBtn">Create</button>

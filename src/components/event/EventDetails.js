@@ -22,6 +22,7 @@ export const EventDetails = () => {
 
     useEffect(() => {
         loadEvent()
+        console.log(event)
     }, [])
 
     return (

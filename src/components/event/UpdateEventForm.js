@@ -58,7 +58,7 @@ export const UpdateEventForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="date">Date: </label>
-                    <input type="text" 
+                    <input type="date" 
                         name="date" required
                         className="form-control"
                         value={event.date}
@@ -70,7 +70,7 @@ export const UpdateEventForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="time">Time: </label>
-                    <input type="text" 
+                    <input type="time" 
                         name="time" required  
                         className="form-control"
                         value={event.time}

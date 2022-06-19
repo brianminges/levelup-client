@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import "./GameCard.css"
 
-export const GameCard = ({game}) => {
+export const GameCard = ({ game, delGame}) => {
+
+    const history = useHistory();
 
     return (
     <section key={`game--${game.id}`} className="game">
@@ -12,6 +14,14 @@ export const GameCard = ({game}) => {
     <div className="buttons">
         <Link to={`games/${game.id}/update`}><button className="cardBtn">Edit</button> </Link>
         <Link to={`games/${game.id}`} ><button className="cardBtn">Details</button> </Link>
+        <button 
+            className="cardBtn"
+            onClick={() => {
+                delGame(game.id)
+
+            }}>
+        Delete
+        </button>
     </div>
     </section>
     

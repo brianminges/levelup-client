@@ -6,7 +6,7 @@ import "./GameCard.css"
 export const GameDetails = () => {
     const {gameId} = useParams();
 
-    const [ game, setGame ] = useState({
+    const [ gameDetail, setGameDetail ] = useState({
         game_type: "",
         title: "",
         maker: "",
@@ -17,21 +17,22 @@ export const GameDetails = () => {
     const loadGame = () => {
         return getGameById(gameId)
             .then(data => {
-                setGame(data)
+                setGameDetail(data)
             })
     }
 
     useEffect(() => {
         loadGame()
+        console.log(gameDetail)
     }, [])
 
     return (
         <>
         <section>
-        <h2>{game.title}</h2>
-        <p>Maker: {game.maker}</p>
-        <p>Players: {game.number_of_players}</p>
-        <p>Skill level: {game.skill_level}</p> 
+        <h2>{gameDetail.title}</h2>
+        <p>Maker: {gameDetail.maker}</p>
+        <p>Players: {gameDetail.number_of_players}</p>
+        <p>Skill level: {gameDetail.skill_level}</p> 
         </section>
         </> 
     )
