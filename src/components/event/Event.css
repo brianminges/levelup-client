@@ -39,3 +39,25 @@ h2,
     margin-right: auto;
     display: block;
 }
+
+#leaveBtn {
+    background-color: red;
+    border-radius: 5px;
+}
+
+#leaveBtn:hover {
+    background-color: pink;
+    color: white;
+    border-radius: 5px;
+}
+
+#joinBtn {
+    background-color: green;
+    border-radius: 5px;
+}
+
+#joinBtn:hover {
+    background-color: lightgreen;
+    color: white;
+    border-radius: 5px;
+}
